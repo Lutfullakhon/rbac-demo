@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/useAuth'
 
 const NavBar: React.FC = () => {
@@ -14,12 +14,56 @@ const NavBar: React.FC = () => {
 	return (
 		<nav>
 			<div>
-				<Link to='/'>Home</Link>
-				{user?.role === 'company_admin' && <Link to='/admin'>Admin</Link>}
-				{user?.role === 'manager' && <Link to='/manager'>Manager</Link>}
-				{user?.role === 'client' && <Link to='/client'>Client</Link>}
-				{user?.role === 'support' && <Link to='/support'>Support</Link>}
+				<NavLink
+					to='/'
+					className={({ isActive }) =>
+						`navbar-link ${isActive ? 'active' : ''}`
+					}
+				>
+					Home
+				</NavLink>
+				{user?.role === 'company_admin' && (
+					<NavLink
+						to='/admin'
+						className={({ isActive }) =>
+							`navbar-link ${isActive ? 'active' : ''}`
+						}
+					>
+						Admin
+					</NavLink>
+				)}
+				{user?.role === 'manager' && (
+					<NavLink
+						to='/manager'
+						className={({ isActive }) =>
+							`navbar-link ${isActive ? 'active' : ''}`
+						}
+					>
+						Manager
+					</NavLink>
+				)}
+				{user?.role === 'client' && (
+					<NavLink
+						to='/client'
+						className={({ isActive }) =>
+							`navbar-link ${isActive ? 'active' : ''}`
+						}
+					>
+						Client
+					</NavLink>
+				)}
+				{user?.role === 'support' && (
+					<NavLink
+						to='/support'
+						className={({ isActive }) =>
+							`navbar-link ${isActive ? 'active' : ''}`
+						}
+					>
+						Support
+					</NavLink>
+				)}
 			</div>
+
 			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<span>{user?.name}</span>
 				<button onClick={handleLogout} style={{ marginLeft: 12 }}>
